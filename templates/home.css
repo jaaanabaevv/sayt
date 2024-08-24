@@ -1,0 +1,44 @@
+
+
+.n1{
+    height: 100px;
+    width: 100px;
+}
+
+.btn-shiny {
+    background: linear-gradient(145deg, #6a11cb, #2575fc); /* Gradent ranglar */
+    color: white; /* Matn rangini tanlang */
+    border: none; /* Chegarani olib tashlash */
+    padding: 10px 20px; /* Ichki bo'shliq */
+    text-align: center; /* Matnni markazlashtirish */
+    text-decoration: none; /* Matnni chizib qo'yishni olib tashlash */
+    display: inline-block; /* Inline blok shaklida bo'lish */
+    font-size: 16px; /* Matn hajmi */
+    border-radius: 5px; /* Qirralarini yumshatish */
+    cursor: pointer; /* Ko'rsatgichni qo'yish */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Soyani qo'shish */
+    transition: all 0.3s ease; /* O'zgarishlarni silliqlash */
+}
+
+.btn-shiny:hover {
+    background: linear-gradient(145deg, #2575fc, #6a11cb); /* Hover holatida rang o'zgarishi */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3); /* Hover holatida soya kuchayishi */
+    transform: translateY(-2px); /* Hover holatida ko'tarish effekti */
+}
+.btn-square {
+    background-color: #28a745; /* Button rangini tanlang */
+    color: white; /* Matn rangini tanlang */
+    border: none; /* Chegarani olib tashlash */
+    padding: 10px 20px; /* Ichki bo'shliq */
+    text-align: center; /* Matnni markazlashtirish */
+    text-decoration: none; /* Matnni chizib qo'yishni olib tashlash */
+    display: inline-block; /* Inline blok shaklida bo'lish */
+    font-size: 16px; /* Matn hajmi */
+    border-radius: 0; /* Burchaklarni kesish */
+    cursor: pointer; /* Ko'rsatgichni qo'yish */
+    transition: background-color 0.3s ease; /* Rang o'zgarishini silliqlash */
+}
+
+.btn-square:hover {
+    background-color: #218838; /* Hover holatida rang o'zgarishi */
+}

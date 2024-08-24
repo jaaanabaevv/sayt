@@ -1,0 +1,41 @@
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+<header>
+
+</header>
+<section class="text-gray-400 bg-gray-900 body-font" style="background-color: #950101;">
+    <div class="container px-5 py-24 mx-auto">
+       
+      <div class="flex flex-wrap -m-4">
+        {% for blog in  postlar %}
+        <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{post.title}}</h3>
+        {% if blog.image1 %}
+          <p><img src="{{blog.image.url}}" alt=""></p>
+        {% else %}
+          <p></p>
+        {% endif %}
+        <h2 style="color: black;">{{blog.author}}</h2>
+
+        <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+          <a class="kitaplar" href="{% url 'detail' blog.id %}">
+            <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="{{blog.image1.url}}">
+            <h3 style="color: #000000;">{{blog.text}}</h3>
+          </a>
+          <div class="mt-4">
+            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{post.author}}</h3>
+            <h2 class="text-white title-font text-lg font-medium">{{post.category}}</h2>
+            <p class="mt-1">{{post.text}}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      
+    </div>
+  </section>
+
+
+
+{% endblock %}
