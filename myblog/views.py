@@ -73,3 +73,14 @@ def update_post(request,id):
         return redirect('home')
     return render(request,'update_post.html',{'form':form , 'model':model})
 
+@login_required
+def delete_post(request,id):
+    blog_post = get_object_or_404(models.Blogs,id=id)
+    if blog_post.author!=request.user:
+        return redirect('home')
+    model = models.Blogs.objects.get(id=id)
+    form = forms.BlogForm(request.POST or None,request.FILES,instance=model)
+    if request.method=='POST':
+        model.delete()
+        return redirect('home')
+    return render(request,'delete.html',{'form':form})
