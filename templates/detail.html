@@ -1,4 +1,4 @@
-
+ 
 {% extends 'base.html' %}
 {% load static %}
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
 <body>
   {% block content %}
 
-<section style="background-color: #FF0000;" class="text-gray-400 bg-gray-900 body-font overflow-hidden">
+<section style="background-color: #ffff;" class="text-gray-400 bg-gray-900 body-font overflow-hidden">
     <div class="container px-5 py-24 mx-auto">
       <a href="{% url 'update' post.id %}"><button style="border: 10%; color: black;">UPDATE POST</button></a>
       <div class="lg:w-4/5 mx-auto flex flex-wrap">
@@ -32,12 +32,17 @@
         </div>
         <img style="width: 800px; height: 500px; " alt="ecommerce" class="n1" src="{{post.image1.url}}">
         <a href="{% url 'delete' post.id %}"><button style="border: 10%; color: black;">delete</button></a>
+        <video controls poster="{{post.image.url}}" controls autoplay  src="{{post.movie.url}}" style="margin-left: 200px; height: 500px; width: 600px;">привет</video>
       </div>
     </div>
   </section>
 <h1></h1>
 
-
+<form action="{% url 'detail' post.id %}" method="POST">
+  {% csrf_token %}
+  {{ comment_form.as_p }}
+  <input type="submit" value="comment_qosiw ">
+</form>
 
 {% endblock %}
 </body>

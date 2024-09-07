@@ -1,37 +1,59 @@
 from django.db import models
 from django.contrib.auth.models import User
 class Category(models.Model):
-    category_name = models.CharField(max_length=255,verbose_name='Название категорий')
-    slug = models.SlugField(verbose_name='Слаг категорий',max_length=255,)
-    class Meta:
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
+    category_name = models.CharField(
+        verbose_name='Kategoriyasi:',
+        max_length=255,)
+    category_slug = models.SlugField(
+        verbose_name='Slug:',
+        max_length=255,
+        unique=True
+    )
 
+    class Meta:
+        verbose_name = 'Kategoriya'
+        verbose_name_plural = 'Kategoriyalar'
     def __str__(self) -> str:
         return self.category_name
 
-class Blogs(models.Model):
-    author = models.ForeignKey(User,on_delete=models.CASCADE)
+
+class movies(models.Model):
+    author = models.ForeignKey(User,on_delete=models.CASCADE,verbose_name='kinonin avtori')
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
 
-    title = models.CharField(max_length=255,verbose_name='Название поста:')
-    text = models.TextField(verbose_name='Текст поста:')
-    image1 = models.ImageField(verbose_name='1 картинка для поста(не объязательно):',
-                               blank=True,null=True,)
-
-    image2 = models.ImageField(verbose_name='2 картинка для поста(не объязательно):',
-                               blank=True,null=True)
+    title = models.CharField(max_length=255,verbose_name='kinonin ati : ')
+    actors = models.TextField(verbose_name='kinoda oynagan actyorlar: ')
+    image1 = models.ImageField(verbose_name='постер:',blank=True,null=True,)
+    pub_date = models.DateField(verbose_name='Kinonin shiqqan waqiti:',)
+    country = models.CharField(verbose_name='Kino tusirilgen mamleket:',max_length=255)
     
-    image3 = models.ImageField(verbose_name='3 картинка для поста(не объязательно):',
-                               blank=True,null=True)
-    pub_date = models.DateTimeField(auto_now_add=True)
+    movie = models.FileField(upload_to='media/movies',verbose_name='Kinonin ozi:')
 
     class Meta:
-        verbose_name = 'Блог'
-        verbose_name_plural = 'Блоги'
+        verbose_name = 'kino'
+        verbose_name_plural = 'kinolar'
     def __str__(self) -> str:
         return self.title
 
+class Janr(models.Model):
+    janr_name = models.CharField(
+        verbose_name='Janri:',
+        max_length=255,)
+    janr_slug = models.SlugField(
+        verbose_name='Slug:',
+        max_length=255,
+        unique=True
+    )
+    
+    class Meta:
+        verbose_name = 'Janr'
+        verbose_name_plural = 'Janrlar'
+    def __str__(self) -> str:
+        return self.janr_name
 
 
-
+class Comments(models.Model):
+    text = models.TextField(verbose_name='Komment text:')
+    username = models.ForeignKey(User,on_delete=models.CASCADE)
+    movie = models.ForeignKey(movies,on_delete=models.CASCADE)
+    published_date = models.DateTimeField(auto_now_add=True,verbose_name='Qosilgan waqit')

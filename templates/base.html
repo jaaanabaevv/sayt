@@ -9,30 +9,29 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{% static 'home.css' %}">
 </head>
-<body style="background-color: #950101;">
-    <header class="text-gray-400 bg-white-100 body-font" style="background-color: #000000;">
+<body style="background-color: #fff;">
+    <header class="text-gray-400 bg-white-100 body-font" style="background-color: #179fc1f5; ">
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
           <a href="{% url 'home'  %}" class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
-            <img  class="logo" src="../media/i (1).webp" alt="" style="height: 100px ; width: 150px; border-radius: 100%;">
-            <h2 class="h2" style ="font-size: 30px;">blog_alpamis</h2>
+            <img  class="logo" src="../media/yoko.webp" alt="" style="height: 100px ; width: 200px;border-radius: 10%; ">
+            <h2 class="h2" style ="margin-left: 30px; font-size: 30px;">yoko</h2>
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
           </a>
           <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-            <a class="mr-5 hover:text-white">узбекистан</a>
-            <a class="mr-5 hover:text-white">бокс</a>
-            <a class="mr-5 hover:text-white">Дзюдо</a>
+            <a class="mr-5 hover:text-white" style="color: #fff;">жанры</a>
+            <a class="mr-5 hover:text-white" style="color: #fff;">сериалы</a>
+            <a class="mr-5 hover:text-white" style="color: #fff;">премиера</a>
             {% if user.is_authenticated %}
-            <p class="NAME"> [{{user.username}}]--</p>
-            <a class="mr-5 hover:text-white" href="{% url 'create' %}">создать пост</a>
-            <a href="{% url 'logout' %}"><button style="border: 10%;">LOG OUT</button></a>
+            <p class="NAME" style="color: #fff;"> [{{user.username}}]--</p>
+            <a href="{% url 'logout' %}" style="color: #fff;"><button style="border: 10%;" style="color: #fff;">LOG OUT</button></a>
             {% else %}
-            <a href="{% url 'reg' %}">[registration]</a>
-            <h3><--------></h3>
-            <a href="{% url 'login' %}">[login]</a>
+            <a href="{% url 'reg' %}"style="color: #fff;">[registration]</a>
+            <h3 style="color: #fff;"><--------></h3>
+            <a href="{% url 'login' %}" style="color: #fff;">[login]</a>
             {% endif %}
             
           </nav>
-          <button class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">выход
+          <button class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0" style="color: #ffffff7; background-color: #fff;" >выход
             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
               <path d="M5 12h14M12 5l7 7-7 7"></path>
             </svg>
@@ -43,14 +42,14 @@
       {% endblock %}
 
 
-      <footer class="text-gray-400 bg-gray-900 body-font" style="background-color: #000000;">
+      <footer class="text-gray-400 bg-gray-900 body-font" style="background-color: #15A9CA;">
         <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
           <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
-            <img  class="logo" src="../media/i (1).webp" alt="" style="height: 100px ; width: 150px; border-radius: 100%;">
-            <span class="ml-3 text-xl">blog_alpamis</span>
+            <img  class="logo" src="../media/yoko.webp" alt=""  style="height: 100px ; width: 200px;border-radius: 10%; ">
+            <span class="ml-3 text-xl">yoko</span>
           </a>
-          <p class="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">© 2024 olympisc games —
-            <a href="bookshop" class="text-gray-500 ml-1" target="_blank" rel="noopener noreferrer">@olympisc</a>
+          <p class="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4" style="color: #fff;">© 2024 yoko —
+            <a href="bookshop" class="text-gray-500 ml-1" target="_blank" rel="noopener noreferrer" style="color: #fff;">@yoko</a>
           </p>
           <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
             <a class="text-gray-400">

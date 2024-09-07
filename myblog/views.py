@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 def homepage(request):
-    bloglar = models.Blogs.objects.all()
+    bloglar = models.movies.objects.all()
     return render(request,'home.html',{'postlar':bloglar})
 
 
@@ -40,33 +40,29 @@ def log_out(request):
     return redirect('home')
 
 def detail(request,id):
-    post = get_object_or_404(models.Blogs,id=id)
-    return render(request,'detail.html',{'post':post})
-
-
-@login_required
-
-def create_post(request):
+    post = get_object_or_404(models.movies,id=id)
+    comments = models.Comments.objects.filter(movie=post)
     if request.method=='POST':
-        form = forms.BlogForm(request.POST,request.FILES)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            form.save()
+        comment_form = forms.commentForm(request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.movie = post
+            new_comment.username = request.user
+            new_comment.save()
+            return redirect('detail',id=post.id)
+    else :
+            comment_form = forms.commentForm()
+    return render(request,'detail.html',{'post':post,'comments':comments,'comment_form':comment_form})
 
-            return redirect('home')
-    else:
-        form = forms.BlogForm()
-    return render(request,'create_post.html',{'form':form})
 
 
 @login_required
 
 def update_post(request,id):
-    blog_post=get_object_or_404(models.Blogs,id=id)
+    blog_post=get_object_or_404(models.movies,id=id)
     if blog_post.author!=request.user:
         return redirect('home')
-    model = models.Blogs.objects.get(id=id)
+    model = models.movies.objects.get(id=id)
     form = forms.BlogForm(request.POST or None,request.FILES,instance=model)
     if form.is_valid():
         form.save()
@@ -75,12 +71,13 @@ def update_post(request,id):
 
 @login_required
 def delete_post(request,id):
-    blog_post = get_object_or_404(models.Blogs,id=id)
+    blog_post = get_object_or_404(models.movies,id=id)
     if blog_post.author!=request.user:
         return redirect('home')
-    model = models.Blogs.objects.get(id=id)
+    model = models.movies.objects.get(id=id)
     form = forms.BlogForm(request.POST or None,request.FILES,instance=model)
     if request.method=='POST':
         model.delete()
         return redirect('home')
     return render(request,'delete.html',{'form':form})
+

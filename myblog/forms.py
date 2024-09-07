@@ -13,8 +13,13 @@ class LoginForm(AuthenticationForm):
         fields = ('username','password')
 class BlogForm(forms.ModelForm):
     class Meta:
-        model = models.Blogs
-        fields = ('category','title','text','image1','image2','image3')
+        model = models.movies
+        fields = ('author','category','title','actors','image1','pub_date','country','movie')
 
 
-
+class commentForm(forms.ModelForm):
+    class Meta:
+        model = models.Comments
+        fields = ['text']
+        widgets = {'text': forms.Textarea(attrs={'class':'form_control','rows':3,'placeholder':'sizdin komment...'})}
+        labels = {'text':''}
